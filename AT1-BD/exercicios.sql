@@ -77,5 +77,17 @@ BEGIN
     RETURN preco * quantidade;
 END;
 
-SELECT produto, quantidade, TOTAL_VALOR(preco, quantidade)FROM produtos;
+SELECT produto, quantidade, TOTAL_VALOR(preco, quantidade)
+FROM produtos;
 
+SELECT COUNT(*)
+FROM produtos;
+
+SELECT produto, MAX(preco)
+FROM produtos;
+
+SELECT produto, MIN(preco)
+FROM produtos;
+
+SELECT SUM(IF(quantidade > 0, preco, 0))
+FROM produtos;
