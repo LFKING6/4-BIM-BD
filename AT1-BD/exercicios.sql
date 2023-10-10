@@ -91,3 +91,37 @@ FROM produtos;
 
 SELECT SUM(IF(quantidade > 0, preco, 0))
 FROM produtos;
+
+CREATE FUNCTION FATORIAL(n INT)
+RETURNS INT
+BEGIN
+    DECLARE resultado INT DEFAULT 1;
+    DECLARE i INT DEFAULT 1;
+
+    WHILE i <= n DO
+        SET resultado = resultado * i;
+        SET i = i + 1;
+    END WHILE;
+
+    RETURN resultado;
+END;
+
+CREATE FUNCTION EXPONENCIAL(base DECIMAL(10, 2), expoente INT)
+RETURNS DECIMAL(10, 2)
+BEGIN
+    RETURN POWER(base, expoente);
+END;
+
+CREATE FUNCTION PALINDROMO(palavra VARCHAR(150))
+RETURNS INT
+BEGIN
+    DECLARE inversa VARCHAR(150);
+
+    SET inversa = REVERSE(palavra);
+
+    IF palavra = inversa THEN
+        RETURN 1; 
+    ELSE
+        RETURN 0;
+    END IF;
+END;
