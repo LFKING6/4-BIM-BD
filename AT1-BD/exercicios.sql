@@ -60,13 +60,22 @@ SELECT DATEDIFF('2023-08-23', '2023-05-19')FROM eventos;
 SELECT data_evento, DAYNAME(data_evento)FROM eventos;
 
 SELECT produto,
-    IF(quantidade > 0, 'Em estoque', 'Fora de estoque') AS status_estoque
+    IF(quantidade > 0, 'Em estoque', 'Fora de estoque')
 FROM produtos;
 
 SELECT produto,
     CASE
-        WHEN preco < 15.00 THEN 'Barato'
-        WHEN preco >= 15.00 AND preco < 25.00 THEN 'Médio'
+        WHEN preco < 20.00 THEN 'Barato'
+        WHEN preco >= 20.00 AND preco < 30.00 THEN 'Médio'
         ELSE 'Caro'
-    END AS categoria_preco
+    END
 FROM produtos;
+
+CREATE FUNCTION TOTAL_VALOR(preco DECIMAL(10, 2), quantidade INT)
+RETURNS DECIMAL(10, 2)
+BEGIN
+    RETURN preco * quantidade;
+END;
+
+SELECT produto, quantidade, TOTAL_VALOR(preco, quantidade)FROM produtos;
+
