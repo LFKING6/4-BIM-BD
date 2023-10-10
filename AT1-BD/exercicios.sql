@@ -41,3 +41,20 @@ FROM produtos;
 
 SELECT AVG(preco)
 FROM produtos;
+
+CREATE TABLE eventos (
+    data_evento DATE
+);
+
+INSERT INTO eventos (data_evento)
+VALUES
+    ('2023-05-19'),
+    ('2023-11-28'),
+    ('2023-08-23');
+
+INSERT INTO eventos (data_evento)
+VALUES (NOW());
+
+SELECT DATEDIFF('2023-08-23', '2023-05-19')FROM eventos;
+
+SELECT data_evento, DAYNAME(data_evento)FROM eventos;
